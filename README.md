@@ -8,7 +8,7 @@
 
 ## 🎥 Protocol Demo
 
-[![CarbonProof Demo Video](https://img.youtube.com/vi/jZzvZLjj100/maxresdefault.jpg)](https://youtu.be/jZzvZLjj100)
+[![CarbonProof Demo Video](https://img.youtube.com/vi/jZzvZLjj100/hqdefault.jpg)](https://youtu.be/jZzvZLjj100)
 
 > **IEEE ClimateChain Global Hackathon 2026 Submission**  
 > **Track Alignment:** Track 1: Carbon Markets & Emissions Transparency  
