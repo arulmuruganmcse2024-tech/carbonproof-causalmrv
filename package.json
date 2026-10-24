@@ -1,0 +1,41 @@
+{
+  "name": "climatechain-hackathon-strategy-plan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "verify:math": "python3 scripts/verify_all.py",
+    "verify:chain": "npx hardhat test test/CarbonProofVault.test.cjs",
+    "verify:all": "python3 scripts/verify_all.py && npx hardhat test test/CarbonProofVault.test.cjs && next build",
+    "test": "npx hardhat test test/CarbonProofVault.test.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.6.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.6.1",
+    "ethers": "^6.17.0",
+    "hardhat": "^2.29.1",
+    "postcss": "^8.5.31",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.61.0",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^3.10.1",
+    "tailwind-merge": "^3.7.0"
+  }
+}

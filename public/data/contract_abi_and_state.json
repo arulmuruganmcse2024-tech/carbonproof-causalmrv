@@ -1,0 +1,1668 @@
+{
+  "metadata": {
+    "contractName": "CarbonProofVault",
+    "protocol": "CarbonProof CausalMRV Settlement Engine",
+    "hackathon": "IEEE ClimateChain Global Hackathon 2026 - Track 1",
+    "version": "1.0.0",
+    "deployedAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "chainId": 1337,
+    "panelCsvSha256": "0xfe23e72a0da7af22cbe855da8e6fb173e893721fa6a3c3006e8623f77f5c2f4f",
+    "generatedAtUtc": "2026-10-24T08:59:24.783Z"
+  },
+  "eip712": {
+    "domain": {
+      "name": "CarbonProof CausalMRV Protocol",
+      "version": "1.0.0",
+      "chainId": 1337,
+      "verifyingContract": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    },
+    "types": {
+      "CausalAuditPayload": [
+        {
+          "name": "projectId",
+          "type": "uint256"
+        },
+        {
+          "name": "epoch",
+          "type": "uint256"
+        },
+        {
+          "name": "issuedVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "verifiedVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "excessVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "retiredExcessVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "activeExcessVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "empiricalPValueBps",
+          "type": "uint256"
+        },
+        {
+          "name": "spatialLeakagePenaltyBps",
+          "type": "uint256"
+        },
+        {
+          "name": "panelCsvSha256",
+          "type": "bytes32"
+        }
+      ]
+    },
+    "typeHash": "0x87fcb70063bb37e33bad79077072637534a0508ba5c94156f7d0c1db85936519"
+  },
+  "roles": {
+    "DEFAULT_ADMIN_ROLE": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "ORACLE_AUDITOR": "0x4ac4867a981ad4d852bb5878f9199d344831c71f4bca12bc04d52d9facd996e2",
+    "REGISTRY_GOVERNOR": "0xb63738771c62b1f21db46333de8e0c11b1054fe0002bfd695497851b1880752d",
+    "PROJECT_DEVELOPER": "0x58abfe45ca173ad2137adcac0b41c6cefac9564d0327075f172857e1f6ca1a85"
+  },
+  "projectsState": {
+    "kariba_vcs902": {
+      "projectId": 1,
+      "name": "Kariba REDD+ Megaproject, Zimbabwe — VCS 902",
+      "verifiedTokenId": 2,
+      "bufferTokenId": 3,
+      "issuedVCUs": 26822953,
+      "verifiedVCUs": 11602433,
+      "excessVCUs": 15220520,
+      "retiredExcessVCUs": 10321531,
+      "activeExcessVCUs": 4898989,
+      "backingRatioBps": 4325,
+      "backingPercentage": 43.25,
+      "initialBufferPool": 5000000,
+      "remainingBufferPool": 0,
+      "empiricalPValueBps": 323,
+      "spatialLeakagePenaltyBps": 513,
+      "status": "OVERDUE_FROZEN",
+      "currentEpoch": 1
+    },
+    "amazon_maisa_vcs": {
+      "projectId": 2,
+      "name": "Maísa & Rio Preto-Jacundá REDD+ Portfolio, Brazilian Amazon",
+      "verifiedTokenId": 4,
+      "bufferTokenId": 5,
+      "issuedVCUs": 8450000,
+      "verifiedVCUs": 2670200,
+      "excessVCUs": 5779800,
+      "backingRatioBps": 3160,
+      "backingPercentage": 31.6,
+      "status": "REBASED_SETTLED",
+      "currentEpoch": 1
+    },
+    "subtropical_ifm": {
+      "projectId": 3,
+      "name": "Subtropical Improved Forest Management Portfolio",
+      "verifiedTokenId": 6,
+      "bufferTokenId": 7,
+      "issuedVCUs": 6240000,
+      "verifiedVCUs": 3670588,
+      "excessVCUs": 2569412,
+      "backingRatioBps": 5882,
+      "backingPercentage": 58.82,
+      "initialBufferPool": 3000000,
+      "remainingBufferPool": 430588,
+      "status": "REBASED_SETTLED",
+      "currentEpoch": 1
+    }
+  },
+  "testScorecard": [
+    {
+      "id": "TEST-1",
+      "name": "Dual-Tranche Project Initialization",
+      "type": "Functional",
+      "status": "PASS",
+      "details": "Tokens 2 & 3 minted; Buyer: 2,68,22,953 VCUs; Buffer: 50,00,000 VCUs; Backing: 100.00%"
+    },
+    {
+      "id": "TEST-2",
+      "name": "EIP-712 Audit & Kariba Rebase",
+      "type": "Settlement",
+      "status": "PASS",
+      "details": "Backing rebased to 4325 bps (43.25%); 50,00,000 buffer burned; Status: REBASED_SETTLED"
+    },
+    {
+      "id": "TEST-3",
+      "name": "Permissionless SLA Clock Freeze",
+      "type": "SLA Clock",
+      "status": "PASS",
+      "details": "Deadline elapsed; markOverdue called permissionlessly; Project 2 status -> OVERDUE_FROZEN"
+    },
+    {
+      "id": "TEST-4",
+      "name": "Overdue Freeze Recovery",
+      "type": "Lifecycle",
+      "status": "PASS",
+      "details": "Valid epoch 1 audit unfroze Project 2; New Backing: 3160 bps (31.60%); Status: REBASED_SETTLED"
+    },
+    {
+      "id": "TEST-5",
+      "name": "Multi-Project State Isolation",
+      "type": "Architecture",
+      "status": "PASS",
+      "details": "Project 1 (4325 bps), Project 2 (3160 bps), Project 3 (10000 bps) fully isolated"
+    },
+    {
+      "id": "TEST-6",
+      "name": "Dynamic Partial Buffer Slashing",
+      "type": "Settlement",
+      "status": "PASS",
+      "details": "Slashed 25,69,412 buffer; Retained 4,30,588 buffer in vault"
+    },
+    {
+      "id": "TEST-7",
+      "name": "Liquid Token Transfer in Settled State",
+      "type": "Transfer",
+      "status": "PASS",
+      "details": "Successfully transferred 10,00,000 verified tokens to secondary buyer"
+    },
+    {
+      "id": "TEST-8",
+      "name": "Revert: UnauthorizedRole",
+      "type": "Security Revert",
+      "status": "PASS",
+      "details": "Reverted with UnauthorizedRole(0x976EA740..., ORACLE_AUDITOR)"
+    },
+    {
+      "id": "TEST-9",
+      "name": "Revert: TamperedDatasetHash",
+      "type": "Security Revert",
+      "status": "PASS",
+      "details": "Reverted with TamperedDatasetHash (expected: 0xfe23e7..., provided: 0xdeadbe...)"
+    },
+    {
+      "id": "TEST-10",
+      "name": "Revert: InvalidEpochSequence",
+      "type": "Security Revert",
+      "status": "PASS",
+      "details": "Reverted replay attack with InvalidEpochSequence(expected: 2, provided: 1)"
+    },
+    {
+      "id": "TEST-11",
+      "name": "Revert: EpochNotYetOverdue",
+      "type": "Security Revert",
+      "status": "PASS",
+      "details": "Reverted early markOverdue invocation with EpochNotYetOverdue"
+    },
+    {
+      "id": "TEST-12",
+      "name": "Revert: TransferFrozen & InsignificantAudit",
+      "type": "Security Revert",
+      "status": "PASS",
+      "details": "Blocked transfers with TransferFrozenProjectOverdue; Blocked p=0.085 with StatisticallyInsignificantAudit(850)"
+    }
+  ],
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "AccessControlBadConfirmation",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "neededRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AccessControlUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ECDSAInvalidSignature",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "length",
+          "type": "uint256"
+        }
+      ],
+      "name": "ECDSAInvalidSignatureLength",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ECDSAInvalidSignatureS",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "needed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ERC1155InsufficientBalance",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "approver",
+          "type": "address"
+        }
+      ],
+      "name": "ERC1155InvalidApprover",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idsLength",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valuesLength",
+          "type": "uint256"
+        }
+      ],
+      "name": "ERC1155InvalidArrayLength",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "ERC1155InvalidOperator",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "ERC1155InvalidReceiver",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "ERC1155InvalidSender",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "ERC1155MissingApprovalForAll",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "EpochNotYetOverdue",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "expectedEpoch",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "providedEpoch",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidEpochSequence",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidShortString",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProjectAlreadyInitialized",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProjectDoesNotExist",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "pValueBps",
+          "type": "uint256"
+        }
+      ],
+      "name": "StatisticallyInsignificantAudit",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "name": "StringTooLong",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "expectedHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "providedHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "TamperedDatasetHash",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "TransferFrozenProjectOverdue",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "requiredRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "UnauthorizedRole",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "ApprovalForAll",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "oldRatioBps",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newRatioBps",
+          "type": "uint256"
+        }
+      ],
+      "name": "BackingRatioRebased",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "epoch",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "verifiedVCUs",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "excessVCUs",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "slashedBuffer",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newBackingRatioBps",
+          "type": "uint256"
+        }
+      ],
+      "name": "CausalAuditSettled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "EIP712DomainChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "verifiedTokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "bufferTokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "initialIssuedVCUs",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "initialBufferVCUs",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "expectedDatasetSha256",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ProjectInitialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "currentTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProjectMarkedOverdue",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "previousAdminRole",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "newAdminRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "ids",
+          "type": "uint256[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "TransferBatch",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "TransferSingle",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "URI",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "CAUSAL_AUDIT_TYPEHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ORACLE_AUDITOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PROJECT_DEVELOPER",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "REGISTRY_GOVERNOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "accounts",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "ids",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "balanceOfBatch",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "eip712Domain",
+      "outputs": [
+        {
+          "internalType": "bytes1",
+          "name": "fields",
+          "type": "bytes1"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "verifyingContract",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "salt",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "extensions",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBufferTokenId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProject",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "epochDuration",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "nextAuditDeadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "currentEpoch",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "backingRatioBps",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "expectedDatasetSha256",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "enum CarbonProofVault.ProjectStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "issuedVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "verifiedVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "excessVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "retiredExcessVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "activeExcessVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "empiricalPValueBps",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "spatialLeakagePenaltyBps",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct CarbonProofVault.ProjectState",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProjectTokens",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "verifiedTokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bufferTokenId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getVerifiedTokenId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "initialIssuedVCUs",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "initialBufferVCUs",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "expectedDatasetSha256",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "initialBuyer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "initializeProject",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "isApprovedForAll",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "projectId",
+          "type": "uint256"
+        }
+      ],
+      "name": "markOverdue",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC1155BatchReceived",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC1155Received",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "projects",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "epochDuration",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nextAuditDeadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentEpoch",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "backingRatioBps",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "expectedDatasetSha256",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "enum CarbonProofVault.ProjectStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "issuedVCUs",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "verifiedVCUs",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "excessVCUs",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "retiredExcessVCUs",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "activeExcessVCUs",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "empiricalPValueBps",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "spatialLeakagePenaltyBps",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "callerConfirmation",
+          "type": "address"
+        }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "ids",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "safeBatchTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "setApprovalForAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "projectId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "epoch",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "issuedVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "verifiedVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "excessVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "retiredExcessVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "activeExcessVCUs",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "empiricalPValueBps",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "spatialLeakagePenaltyBps",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "panelCsvSha256",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct CarbonProofVault.CausalAuditPayload",
+          "name": "payload",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "submitCausalAudit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "uri",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}

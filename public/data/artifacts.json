@@ -1,0 +1,631 @@
+{
+  "metadata": {
+    "protocol": "CarbonProof CausalMRV",
+    "version": "1.0.0",
+    "hackathon": "IEEE ClimateChain Global Hackathon 2026 - Track 1",
+    "description": "Offline synthetic control verification, causal counterfactuals, and spatial leakage audit",
+    "deterministic_seed": 42,
+    "panel_csv_filename": "carbonproof_panel_2001_2025.csv",
+    "panel_csv_sha256": "fe23e72a0da7af22cbe855da8e6fb173e893721fa6a3c3006e8623f77f5c2f4f",
+    "generated_at_utc": "2026-10-24T08:58:56Z"
+  },
+  "windows": {
+    "pre_intervention_train": {
+      "start": 2001,
+      "end": 2006,
+      "n_years": 6
+    },
+    "out_of_sample_holdout": {
+      "start": 2007,
+      "end": 2010,
+      "n_years": 4
+    },
+    "post_intervention_crediting": {
+      "start": 2011,
+      "end": 2024,
+      "n_years": 14
+    },
+    "panel_full_span": {
+      "start": 2001,
+      "end": 2025,
+      "n_years": 25
+    }
+  },
+  "case_studies": {
+    "kariba_vcs902": {
+      "name": "Kariba REDD+ Megaproject, Zimbabwe \u2014 VCS 902",
+      "project_area_ha": 784987,
+      "crediting_start_date": "2011-07-01",
+      "static_pdd_linear_formula": "FDF(t) = 0.03188 * t",
+      "issued_vcus": 26822953,
+      "verified_counterfactual_vcus": 11602433,
+      "excess_vcus": 15220520,
+      "excess_percentage": 56.744,
+      "retired_excess_vcus": 10321531,
+      "active_excess_vcus": 4898989
+    },
+    "amazon_maisa_vcs": {
+      "name": "Ma\u00edsa & Rio Preto-Jacund\u00e1 REDD+ Portfolio, Brazilian Amazon",
+      "project_area_ha": 55000,
+      "scientific_grounding": "West et al., PNAS 2020 counterfactual audit (~40%-94% over-crediting)",
+      "issued_vcus": 8450000,
+      "verified_counterfactual_vcus": 2670200,
+      "excess_vcus": 5779800,
+      "overcrediting_rate_pct": 68.4,
+      "spatial_leakage_buffer_km": [
+        10,
+        50,
+        150
+      ]
+    },
+    "subtropical_ifm": {
+      "name": "Subtropical Improved Forest Management Portfolio",
+      "project_area_ha": 120000,
+      "scientific_grounding": "ES&T 2025/2026 satellite study (3.7x ex-ante, 1.7x ex-post baseline over-crediting)",
+      "ex_ante_inflation_factor": 3.7,
+      "ex_post_overcrediting_factor": 1.7,
+      "issued_vcus": 6240000,
+      "verified_counterfactual_vcus": 3670588,
+      "excess_vcus": 2569412
+    }
+  },
+  "holdout_model_comparison": {
+    "evaluation_window": "2007-2010 (4 years out-of-sample)",
+    "models": {
+      "Static_PDD_Linear": {
+        "rmspe": 4.100382009325117,
+        "mae": 3.9673134267460686,
+        "description": "Developer static linear extrapolation fit on 2001-2006"
+      },
+      "Unweighted_Donor_Mean": {
+        "rmspe": 2.4074425416858785,
+        "mae": 2.4029710699501763,
+        "description": "Simple unweighted mean of all 30 control donors"
+      },
+      "Unconstrained_OLS": {
+        "rmspe": 0.3279731445078879,
+        "mae": 0.27946176674301615,
+        "description": "Ordinary least squares without simplex constraints (overfitted)"
+      },
+      "CarbonProof_SCM_Simplex": {
+        "rmspe": 0.30623945683982223,
+        "mae": 0.2769995184129659,
+        "description": "Convex synthetic control with non-negativity and unit-sum constraints"
+      }
+    },
+    "bootstrap_rmspe_reduction": {
+      "resamples": 200,
+      "mean_reduction_pct": 92.55,
+      "ci_95_lower_pct": 90.21,
+      "ci_95_upper_pct": 95.07
+    }
+  },
+  "synthetic_control_weights": {
+    "n_donors": 30,
+    "simplex_sum": 1.0,
+    "min_weight": 0.0,
+    "max_weight": 0.3005914,
+    "non_zero_donors": [
+      {
+        "donor_id": "donor_21",
+        "weight": 0.30059,
+        "elevation_m": 908.3,
+        "canopy_pct": 87.7,
+        "road_dist_km": 28.6
+      },
+      {
+        "donor_id": "donor_08",
+        "weight": 0.25924,
+        "elevation_m": 1086.3,
+        "canopy_pct": 86.1,
+        "road_dist_km": 38.2
+      },
+      {
+        "donor_id": "donor_30",
+        "weight": 0.11993,
+        "elevation_m": 512.5,
+        "canopy_pct": 77.0,
+        "road_dist_km": 46.0
+      },
+      {
+        "donor_id": "donor_06",
+        "weight": 0.10597,
+        "elevation_m": 589.2,
+        "canopy_pct": 78.9,
+        "road_dist_km": 42.8
+      },
+      {
+        "donor_id": "donor_17",
+        "weight": 0.06096,
+        "elevation_m": 693.0,
+        "canopy_pct": 85.2,
+        "road_dist_km": 37.0
+      },
+      {
+        "donor_id": "donor_04",
+        "weight": 0.06004,
+        "elevation_m": 899.1,
+        "canopy_pct": 73.8,
+        "road_dist_km": 47.5
+      },
+      {
+        "donor_id": "donor_16",
+        "weight": 0.04961,
+        "elevation_m": 608.4,
+        "canopy_pct": 84.0,
+        "road_dist_km": 25.8
+      },
+      {
+        "donor_id": "donor_28",
+        "weight": 0.03736,
+        "elevation_m": 840.0,
+        "canopy_pct": 81.5,
+        "road_dist_km": 21.5
+      },
+      {
+        "donor_id": "donor_27",
+        "weight": 0.0063,
+        "elevation_m": 619.8,
+        "canopy_pct": 84.1,
+        "road_dist_km": 64.4
+      }
+    ],
+    "weights_vector": [
+      0.0,
+      0.0,
+      0.0,
+      0.060038,
+      0.0,
+      0.105972,
+      0.0,
+      0.25924,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.049608,
+      0.060961,
+      0.0,
+      0.0,
+      0.0,
+      0.300591,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.006305,
+      0.037358,
+      0.0,
+      0.119928
+    ]
+  },
+  "placebo_permutations": {
+    "n_permutations": 30,
+    "project_ratio_post_pre_rmspe": 23.2757,
+    "placebo_ratios_summary": {
+      "min": 0.7476,
+      "median": 1.2508,
+      "max": 3.4737
+    },
+    "placebo_ratios": [
+      1.8476,
+      0.9699,
+      2.4505,
+      1.2873,
+      0.8293,
+      1.4878,
+      1.7483,
+      0.8459,
+      0.9724,
+      2.8718,
+      0.8018,
+      1.0713,
+      1.076,
+      1.8512,
+      1.0249,
+      1.072,
+      0.7476,
+      2.3284,
+      2.8396,
+      1.1983,
+      1.5766,
+      1.0169,
+      3.4737,
+      1.8079,
+      1.1886,
+      1.0902,
+      1.2143,
+      1.3319,
+      2.9963,
+      1.6408
+    ],
+    "extreme_placebo_count": 0,
+    "empirical_p_value": 0.03226,
+    "is_statistically_significant": true
+  },
+  "spatial_durbin_leakage": {
+    "marginal_displacement_rate": 0.02,
+    "buffer_rings_km": [
+      10,
+      50,
+      150
+    ],
+    "lag_structure": "2-year temporal lag",
+    "cumulative_leakage_kha_2011_2024": 3.176,
+    "cumulative_leakage_penalty_pct": 5.13
+  },
+  "annual_time_series_kariba": {
+    "years": [
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "observed_loss_kha": [
+      27.1835,
+      28.0482,
+      27.1716,
+      29.159,
+      30.4714,
+      28.3131,
+      27.5285,
+      26.5153,
+      26.0404,
+      26.1282,
+      16.85,
+      15.6,
+      14.72,
+      13.95,
+      13.52,
+      13.2,
+      12.92,
+      12.65,
+      12.42,
+      12.28,
+      12.14,
+      12.02,
+      11.85,
+      11.68,
+      11.55
+    ],
+    "scm_counterfactual_loss_kha": [
+      27.1835,
+      28.0482,
+      27.1716,
+      29.159,
+      30.4714,
+      28.3131,
+      27.3445,
+      26.3338,
+      25.7969,
+      25.6292,
+      23.118,
+      21.3081,
+      20.1383,
+      18.956,
+      18.3288,
+      17.5829,
+      17.1746,
+      16.6201,
+      16.5364,
+      15.8157,
+      16.2271,
+      15.5924,
+      15.3662,
+      14.96,
+      14.6767
+    ],
+    "static_pdd_loss_kha": [
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254,
+      25.0254
+    ],
+    "gross_avoided_loss_kha": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      6.268,
+      5.7081,
+      5.4183,
+      5.006,
+      4.8088,
+      4.3829,
+      4.2546,
+      3.9701,
+      4.1164,
+      3.5357,
+      4.0871,
+      3.5724,
+      3.5162,
+      3.28,
+      3.1267
+    ],
+    "spatial_leakage_loss_kha": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3709,
+      0.3351,
+      0.3152,
+      0.2893,
+      0.277,
+      0.2508,
+      0.2439,
+      0.226,
+      0.2339,
+      0.2005,
+      0.2311,
+      0.2024,
+      0.1976
+    ],
+    "net_avoided_loss_kha": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      6.268,
+      5.7081,
+      5.0474,
+      4.6709,
+      4.4936,
+      4.0936,
+      3.9777,
+      3.7193,
+      3.8725,
+      3.3097,
+      3.8532,
+      3.3719,
+      3.2851,
+      3.0776,
+      2.9291
+    ],
+    "developer_claimed_vcu": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1332608,
+      1536362,
+      1679804,
+      1805316,
+      1875407,
+      1927568,
+      1973208,
+      2017219,
+      2054710,
+      2077530,
+      2100350,
+      2119911,
+      2147621,
+      2175339,
+      2175332
+    ],
+    "verified_counterfactual_vcu": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1237892,
+      1127308,
+      996818,
+      922469,
+      887454,
+      808454,
+      785557,
+      734533,
+      764797,
+      653650,
+      760972,
+      665934,
+      648792,
+      607803,
+      607797
+    ],
+    "excess_vcu": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      94716,
+      409054,
+      682986,
+      882847,
+      987953,
+      1119114,
+      1187651,
+      1282686,
+      1289913,
+      1423880,
+      1339378,
+      1453977,
+      1498829,
+      1567536,
+      1567535
+    ]
+  },
+  "eip712_payload": {
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "VerificationReport": [
+        {
+          "name": "projectId",
+          "type": "string"
+        },
+        {
+          "name": "panelCsvSha256",
+          "type": "string"
+        },
+        {
+          "name": "creditingPeriod",
+          "type": "string"
+        },
+        {
+          "name": "issuedVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "verifiedVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "excessVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "retiredExcessVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "activeExcessVCUs",
+          "type": "uint256"
+        },
+        {
+          "name": "holdoutRmspeSCM",
+          "type": "uint256"
+        },
+        {
+          "name": "holdoutRmspeReductionBps",
+          "type": "uint256"
+        },
+        {
+          "name": "empiricalPValueBps",
+          "type": "uint256"
+        },
+        {
+          "name": "spatialLeakagePenaltyBps",
+          "type": "uint256"
+        },
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ]
+    },
+    "primaryType": "VerificationReport",
+    "domain": {
+      "name": "CarbonProof CausalMRV Protocol",
+      "version": "1.0.0",
+      "chainId": 1,
+      "verifyingContract": "0xCa7b09F800F1eEe919C1147e4Cca7461822834E0"
+    },
+    "message": {
+      "projectId": "kariba_vcs902",
+      "panelCsvSha256": "fe23e72a0da7af22cbe855da8e6fb173e893721fa6a3c3006e8623f77f5c2f4f",
+      "creditingPeriod": "2011-2024",
+      "issuedVCUs": 26822953,
+      "verifiedVCUs": 11602433,
+      "excessVCUs": 15220520,
+      "retiredExcessVCUs": 10321531,
+      "activeExcessVCUs": 4898989,
+      "holdoutRmspeSCM": 306,
+      "holdoutRmspeReductionBps": 9255,
+      "empiricalPValueBps": 323,
+      "spatialLeakagePenaltyBps": 600,
+      "timestamp": 1792832336
+    }
+  }
+}
