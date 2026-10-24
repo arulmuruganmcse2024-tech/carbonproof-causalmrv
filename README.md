@@ -249,7 +249,7 @@ npx hardhat run scripts/deploy.cjs
 │   └── test/
 │       └── CarbonProofVault.test.ts    # TypeScript Hardhat Test Suite
 ├── docs/
-│   ├── DEVPOST_SUBMISSION_PACK.md      # Copy-paste Devpost text & 3:45 demo video script
+│   ├── DEVPOST_SUBMISSION.md           # Official Devpost submission text & links
 │   ├── SECURITY_AND_DATA_INTEGRITY.md  # IEEE Session 2 Climate Cybersecurity Analysis
 │   └── CLIMATE_IMPACT_AND_ADOPTION.md  # Market transition to Verra VM0048 & ICVCM Core Principles
 ├── public/
