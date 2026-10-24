@@ -7,6 +7,7 @@
 [![Solidity Tests](https://img.shields.io/badge/Smart%20Contracts-12%2F12%20Passing%20%28681ms%29-purple?style=for-the-badge&logo=solidity)](test/CarbonProofVault.test.cjs)
 
 ## 🎥 Protocol Demo
+
 [![CarbonProof Demo Video](https://img.youtube.com/vi/jZzvZLjj100/maxresdefault.jpg)](https://youtu.be/jZzvZLjj100)
 
 > **IEEE ClimateChain Global Hackathon 2026 Submission**  
