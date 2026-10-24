@@ -4,7 +4,10 @@
 [![Track 1: Carbon Markets & Emissions Transparency](https://img.shields.io/badge/IEEE%20ClimateChain-Track%201%3A%20Carbon%20Markets-00C853?style=for-the-badge&logo=ethereum)](https://climatechain2026.devpost.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge)](LICENSE)
 [![Verification Suite](https://img.shields.io/badge/Verification%20Suite-100%25%20Passing-emerald?style=for-the-badge&logo=checkmarx)](scripts/verify_all.py)
-[![Solidity Tests](https://img.shields.io/badge/Smart%20Contracts-12%2F12%20Passing%20(681ms)-purple?style=for-the-badge&logo=solidity)](test/CarbonProofVault.test.cjs)
+[![Solidity Tests](https://img.shields.io/badge/Smart%20Contracts-12%2F12%20Passing%20%28681ms%29-purple?style=for-the-badge&logo=solidity)](test/CarbonProofVault.test.cjs)
+
+## 🎥 Protocol Demo
+[![CarbonProof Demo Video](https://img.youtube.com/vi/jZzvZLjj100/maxresdefault.jpg)](https://youtu.be/jZzvZLjj100)
 
 > **IEEE ClimateChain Global Hackathon 2026 Submission**  
 > **Track Alignment:** Track 1: Carbon Markets & Emissions Transparency  
@@ -245,9 +248,7 @@ npx hardhat run scripts/deploy.cjs
 
 ```text
 ├── contracts/
-│   ├── CarbonProofVault.sol            # Dual-Tranche ERC-1155 + EIP-712 Settlement Contract
-│   └── test/
-│       └── CarbonProofVault.test.ts    # TypeScript Hardhat Test Suite
+│   └── CarbonProofVault.sol            # Dual-Tranche ERC-1155 + EIP-712 Settlement Contract
 ├── docs/
 │   ├── DEVPOST_SUBMISSION.md           # Official Devpost submission text & links
 │   ├── SECURITY_AND_DATA_INTEGRITY.md  # IEEE Session 2 Climate Cybersecurity Analysis
@@ -276,6 +277,8 @@ npx hardhat run scripts/deploy.cjs
 │       ├── constants.ts                # Verified empirical metrics & contract constants
 │       ├── scmEngine.ts                # Client-side quadratic programming solver
 │       └── types.ts                    # TypeScript definitions for portfolios & audits
+├── test/
+│   └── CarbonProofVault.test.cjs       # 12-test Hardhat EVM verification suite (681ms)
 ├── hardhat.config.cjs                  # Hardhat configuration (Cancun, viaIR)
 ├── package.json                        # Dependencies, build scripts, & test runners
 └── README.md                           # Master repository documentation

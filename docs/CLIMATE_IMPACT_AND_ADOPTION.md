@@ -2,7 +2,7 @@
 ### Market Scale, Additionality Safeguards, and Adoption Pathways for Verra VM0048 & ICVCM Core Carbon Principles (CCPs)
 
 **IEEE ClimateChain Global Hackathon 2026**  
-**Track Alignment:** Track 1 (Primary) — Carbon Markets & Emissions Transparency | Track 4 (Secondary) — Climate Data & Environmental Monitoring  
+**Track Alignment:** Track 1: Carbon Markets & Emissions Transparency  
 
 ---
 

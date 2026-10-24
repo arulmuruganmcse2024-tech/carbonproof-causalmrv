@@ -76,6 +76,7 @@ Working through the empirical data from Kariba (VCS 902), Brazilian Amazon REDD+
 
 ## Links & Verification
 
+- **Protocol Demo Video (YouTube):** [https://youtu.be/jZzvZLjj100](https://youtu.be/jZzvZLjj100)
 - **Live Verification Studio:** [https://carbonproof-causalmrv.vercel.app](https://carbonproof-causalmrv.vercel.app)
 - **GitHub Repository:** [https://github.com/arulmuruganmcse2024-tech/carbonproof-causalmrv](https://github.com/arulmuruganmcse2024-tech/carbonproof-causalmrv)
 - **One-Command Local Verification:**

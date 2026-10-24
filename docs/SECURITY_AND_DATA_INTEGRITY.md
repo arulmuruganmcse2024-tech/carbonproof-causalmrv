@@ -45,7 +45,7 @@ In response to IEEE Session 2 ("AI and Cybersecurity Issues for Climate Change")
  │                                 ▼                                                                │
  │  [Attack Vector 5: Contagion & Insolvent Buffer Pools]                                           │
  │  • Fraudulent project draining a shared global buffer pool                                       │
- │  • Enforced Check: Isolated Dual-Tranche ERC-1155 Escrow (Self-Contained Sashing)                │
+ │  • Enforced Check: Isolated Dual-Tranche ERC-1155 Escrow (Self-Contained Slashing)               │
  └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
