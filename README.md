@@ -1,5 +1,5 @@
 # CarbonProof (CausalMRV)
-### Empirical Counterfactual Baselines & On-Chain Settlement for Carbon Markets
+### Ending phantom carbon credits with empirical counterfactuals and on-chain dual-tranche settlement.
 
 [![Track 1: Carbon Markets & Emissions Transparency](https://img.shields.io/badge/IEEE%20ClimateChain-Track%201%3A%20Carbon%20Markets-00C853?style=for-the-badge&logo=ethereum)](https://climatechain2026.devpost.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge)](LICENSE)
@@ -8,7 +8,8 @@
 
 > **IEEE ClimateChain Global Hackathon 2026 Submission**  
 > **Track Alignment:** Track 1: Carbon Markets & Emissions Transparency  
-> **Protocol Repository:** Deterministic End-to-End Causal MRV Pipeline & Dual-Tranche Settlement Vault  
+> **Protocol Repository:** [https://github.com/arulmuruganmcse2024-tech/carbonproof-causalmrv](https://github.com/arulmuruganmcse2024-tech/carbonproof-causalmrv)  
+> **Live Verification Studio:** [https://carbonproof-causalmrv.vercel.app](https://carbonproof-causalmrv.vercel.app)  
 
 ---
 
