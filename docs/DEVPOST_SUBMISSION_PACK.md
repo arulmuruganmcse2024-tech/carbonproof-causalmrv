@@ -18,14 +18,11 @@ This document contains **100% copy-paste-ready text** formatted specifically for
 ---
 
 ### 2. Track Selection & Track Alignment Statement
-**Primary Track:**  
+**Track Alignment:**  
 `Track 1: Carbon Markets & Emissions Transparency`
 
-**Secondary Track:**  
-`Track 4: Climate Data & Environmental Monitoring`
-
 **Track Alignment Statement:**  
-> CarbonProof directly targets the root vulnerability of global carbon markets: static, uncalibrated baselines that enable phantom credit issuance. By bridging rigorous econometrics with Ethereum smart contracts, CarbonProof aligns with Track 1 by replacing opaque paper-based verification with an on-chain Dual-Tranche ERC-1155 settlement engine featuring automated buffer slashing, EIP-712 cryptographic proofs, and an audit SLA clock. Simultaneously, it aligns with Track 4 by ingesting multi-decadal satellite tree cover loss panels across 33 geospatial polygons, running constrained quadratic programming, 150 km spatial Durbin leakage penalization, and permutation placebo tests to provide un-falsifiable environmental monitoring.
+> CarbonProof directly targets the root vulnerability of global carbon markets: static, uncalibrated baselines that enable phantom credit issuance. By bridging rigorous econometrics with Ethereum smart contracts, CarbonProof aligns strictly with Track 1 (Carbon Markets & Emissions Transparency) by replacing opaque paper-based verification with an on-chain Dual-Tranche ERC-1155 settlement engine featuring automated buffer slashing, EIP-712 cryptographic proofs, and an audit SLA clock, backed by multi-decadal satellite tree cover loss panels across 33 geospatial polygons, constrained quadratic programming, 150 km spatial Durbin leakage penalization, and permutation placebo tests.
 
 ---
 
@@ -104,7 +101,7 @@ SCREEN SETUP: Browser open to http://localhost:3000 (Next.js Verification Studio
 ### Segment 1: The Problem & Executive Overview (0:00 – 0:40) | 40 Seconds
 
 **Screen Action:**
-- Show the Header of the CarbonProof dashboard. Hover over the badges: `Track 1: Carbon Markets`, `Track 4: Climate Data`, and the `Vault: 0x5FbD...aa3` address badge.
+- Show the Header of the CarbonProof dashboard. Hover over the badges: `Track 1: Carbon Markets` and the `Vault: 0x5FbD...aa3` address badge.
 - Point cursor to the Kariba VCS 902 headline metrics: `Issued: 26.82M VCUs`, `Verified Causal: 11.60M VCUs`, `Excess: 15.22M VCUs (56.74%)`.
 
 **Presenter Script (Word-for-Word):**

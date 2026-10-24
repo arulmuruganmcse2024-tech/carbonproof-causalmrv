@@ -2,14 +2,12 @@
 ### Empirical Counterfactual Baselines & On-Chain Settlement for Carbon Markets
 
 [![Track 1: Carbon Markets & Emissions Transparency](https://img.shields.io/badge/IEEE%20ClimateChain-Track%201%3A%20Carbon%20Markets-00C853?style=for-the-badge&logo=ethereum)](https://climatechain2026.devpost.com/)
-[![Track 4: Climate Data & Environmental Monitoring](https://img.shields.io/badge/IEEE%20ClimateChain-Track%204%3A%20Climate%20Data-2979FF?style=for-the-badge&logo=satellite)](https://climatechain2026.devpost.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge)](LICENSE)
 [![Verification Suite](https://img.shields.io/badge/Verification%20Suite-100%25%20Passing-emerald?style=for-the-badge&logo=checkmarx)](scripts/verify_all.py)
 [![Solidity Tests](https://img.shields.io/badge/Smart%20Contracts-12%2F12%20Passing%20(681ms)-purple?style=for-the-badge&logo=solidity)](test/CarbonProofVault.test.cjs)
 
 > **IEEE ClimateChain Global Hackathon 2026 Submission**  
-> **Primary Track:** Track 1: Carbon Markets & Emissions Transparency  
-> **Secondary Track:** Track 4: Climate Data & Environmental Monitoring  
+> **Track Alignment:** Track 1: Carbon Markets & Emissions Transparency  
 > **Protocol Repository:** Deterministic End-to-End Causal MRV Pipeline & Dual-Tranche Settlement Vault  
 
 ---
@@ -287,7 +285,13 @@ npx hardhat run scripts/deploy.cjs
 ## 8. Team & Hackathon Information
 
 - **Event:** IEEE ClimateChain Global Hackathon 2026 (Hosted by IEEE Blockchain Türkiye Chapter)
-- **Track 1:** Carbon Markets & Emissions Transparency (Primary)
-- **Track 4:** Climate Data & Environmental Monitoring (Secondary)
+- **Track Alignment:** Track 1: Carbon Markets & Emissions Transparency
 - **Project Name:** CarbonProof (CausalMRV)
-- **License:** MIT License (Open Source)
+- **Author / Lead:** Arul Murugan M (`arulmuruganmcse2024-tech`)
+- **License:** MIT License (Open Source) — See [`LICENSE`](LICENSE) for full details.
+
+---
+
+## 9. License Notice
+
+This project is open-source software released under the terms of the **MIT License**. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See the [`LICENSE`](LICENSE) file in the root directory for the full license text.
